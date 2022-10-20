@@ -1,32 +1,41 @@
-import React, { useEffect, useState } from "react";
-import { addToDb, getSavedCart } from "../../utilities/fakedb";
+import React, { useState } from "react";
+import { useLoaderData } from "react-router-dom";
+import { addToDb, deleteShoppingCart, removeFromDb } from "../../utilities/fakedb";
 import Cart from "../Cart/Cart";
 import Product from "../Product/Product";
 import "./Shop.css";
 
 const Shop = () => {
-  const [products, setProducts] = useState([]);
-  const [cart, setCart] = useState([]);
+  // const [products, setProducts] = useState([]);
+  const {products, initialCart} = useLoaderData();
 
-  useEffect(() => {
-    fetch("products.json")
-      .then((res) => res.json())
-      .then((data) => setProducts(data));
-  }, []);
+  const [cart, setCart] = useState(initialCart);
 
-  useEffect(() => {
-    const storedCart = getSavedCart();
-    const savedCart = [];
-    for (const id in storedCart) {
-      const addedProduct = products.find((product) => product.id === id);
-      if (addedProduct) {
-        const quantity = storedCart[id];
-        addedProduct.quantity = quantity;
-        savedCart.push(addedProduct);
-      }
-    }
-    setCart(savedCart);
-  }, [products]);
+  const handleClearCart = () => {
+    setCart([]);
+    deleteShoppingCart();
+  }
+
+  // useEffect(() => {
+  //   fetch("products.json")
+  //     .then((res) => res.json())
+  //     .then((data) => setProducts(data));
+  // }, []);
+
+  // useEffect(() => {
+  //   const storedCart = getSavedCart();
+  //   const savedCart = [];
+    
+  //   for (const id in storedCart) {
+  //     const addedProduct = products.find((product) => product.id === id);
+  //     if (addedProduct) {
+  //       const quantity = storedCart[id];
+  //       addedProduct.quantity = quantity;
+  //       savedCart.push(addedProduct);
+  //     }
+  //   }
+  //   setCart(savedCart);
+  // }, [products]);
 
   const handlerAddToCart = (selectedProduct) => {
     const exsits = cart.find((product) => product.id === selectedProduct.id);
@@ -56,7 +65,7 @@ const Shop = () => {
         ))}
       </div>
       <div className="order-container">
-        <Cart cart={cart}></Cart>
+        <Cart handleClearCart={handleClearCart} cart={cart}></Cart>
       </div>
     </div>
   );

@@ -2,5 +2,42 @@
     position: sticky;
     top: 0;
     padding: 30px 20px;
+    height: 100vh;
     
+}
+.btn-clear {
+    background-color: rgb(252, 161, 158);
+    padding: 6px 7px;
+    border: 1px solid transparent;
+    border-radius: 10px;
+    margin-top: 15px;
+    font-size: 16px;
+    font-weight: bold;
+    width: 70%;
+    margin: 0 auto;
+    color: white;
+}
+.btn-clear:hover {
+    background-color: transparent;
+    color: rgb(192, 60, 60);
+    border: 1px solid rgb(192, 60, 60) ;
+    cursor: pointer;
+}
+.btn-checkout {
+    background-color: rgb(194, 255, 185);
+    padding: 6px 7px;
+    border: 1px solid transparent;
+    border-radius: 10px;
+    font-size: 16px;
+    font-weight: bold;
+    width: 70%;
+    margin: 0 auto;
+    margin-top: 15px;
+    
+}
+.btn-checkout:hover {
+     background-color: transparent ;
+    color: rgb(18, 54, 121);
+    border: 1px solid rgb(18, 54, 121) ;
+    cursor: pointer;
 }
