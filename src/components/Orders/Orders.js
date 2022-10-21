@@ -36,12 +36,17 @@ const Orders = () => {
           ))}
           {cart.length === 0 ? (
             <h2>
-              No items found for review! <Link to="/shop">Go for shopping...</Link>
+              No items found for review!{" "}
+              <Link to="/shop">Go for shopping...</Link>
             </h2>
           ) : undefined}
         </div>
         <div className="order-container">
-          <Cart handleClearCart={handleClearCart} cart={cart}></Cart>
+          <Cart handleClearCart={handleClearCart} cart={cart}>
+            <Link to="/orders">
+              <button className="btn-checkout">Checkout</button>
+            </Link>
+          </Cart>
         </div>
       </div>
     );

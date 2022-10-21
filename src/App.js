@@ -9,47 +9,57 @@ import About from './components/About/About';
 import { handleProductAndCartData } from './loaders/loaders';
 import Login from './components/Login/Login';
 import SignUp from './components/SignUp/SignUp';
+import PrivateRoutes from './routes/PrivateRoutes';
 
 
 function App() {
   const router = createBrowserRouter([
     {
-      path: '/',
-      element: <Main></Main>, children: [
+      path: "/",
+      element: <Main></Main>,
+      children: [
         {
-          path: '/',
+          path: "/",
           loader: handleProductAndCartData,
-          element: <Shop></Shop>
+          element: <Shop></Shop>,
         },
         {
-          path: '/shop',
+          path: "/shop",
           loader: handleProductAndCartData,
-          element: <Shop></Shop>
+          element: <Shop></Shop>,
         },
         {
-          path: '/orders',
+          path: "/orders",
           loader: handleProductAndCartData,
-          element: <Orders></Orders>
+          element: (
+            <PrivateRoutes>
+              <Orders></Orders>
+            </PrivateRoutes>
+          ),
         },
         {
-          path: '/inventory',
-          element: <Inventory></Inventory>
+          path: "/inventory",
+          element: (
+            <PrivateRoutes>
+              <Inventory></Inventory>
+            </PrivateRoutes>
+          ),
         },
         {
-          path: '/about',
-          element: <About></About>
+          path: "/about",
+          element: <About></About>,
         },
         {
-          path: '/login',
-          element: <Login></Login>
+          path: "/login",
+          element: <Login></Login>,
         },
         {
-          path: '/signup',
-          element: <SignUp></SignUp>
-        }
-      ]
-    }
-  ])
+          path: "/signup",
+          element: <SignUp></SignUp>,
+        },
+      ],
+    },
+  ]);
   return (
     <div>
       <RouterProvider router={router}></RouterProvider>

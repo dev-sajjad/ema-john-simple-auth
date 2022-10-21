@@ -8,7 +8,7 @@ const Inventory = () => {
     
     return (
         <div>
-            <h3>This is inventory page for {user.displayName}</h3>
+            <h3>This is inventory page for {user?.displayName}</h3>
         </div>
     );
 };
